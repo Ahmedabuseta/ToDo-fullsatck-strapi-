@@ -8,7 +8,7 @@ interface IProps {
 }
 
 function Todo({todo}:IProps) {
-  const { id, title, list, subTasks, dueDate, tags, isCompleted } = todo;
+  const { id, title, list, subTasks, dueDate } = todo;
 console.log(subTasks?.length);
 
   return (

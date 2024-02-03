@@ -45,7 +45,9 @@ export interface ILoginData{
   type:string;
 }
 export interface ISidebar {
+  openMenu?: string
   title: string;
   icon?: ReactNode;
   color?: string;
+  link:string;
 }

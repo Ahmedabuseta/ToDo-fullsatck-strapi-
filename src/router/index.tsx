@@ -6,7 +6,10 @@ import ErrorHandler from "../components/errors/ErrorHandler";
 import HomePage from "../pages";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
-
+import StickyWallPage from "../pages/stickyWall";
+import Upcoming from "../pages/upcoming";
+import Today from "../pages/today";
+import ListPage from "../pages/ListPage";
 const isLoggedIn = false;
 const userData: { email: string } | null = isLoggedIn ? { email: "email@gmail.com" } : null;
 
@@ -23,6 +26,30 @@ const router = createBrowserRouter(
             </ProtectedRoute>
           }
         />
+        <Route path='today' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <Today />
+            </ProtectedRoute>
+          } />
+          <Route path='stickyWall' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <StickyWallPage />
+            </ProtectedRoute>
+          } />
+          <Route path='upcoming' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <Upcoming />
+            </ProtectedRoute>
+          } />
+          <Route path='calendar' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <Upcoming />
+            </ProtectedRoute>
+          } />
+          <Route path='lists/:id' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <ListPage />
+            </ProtectedRoute>
+          } />
+          <Route path='tag/:id' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <ListPage />
+            </ProtectedRoute>
+          } />
         <Route
           path="login"
           element={

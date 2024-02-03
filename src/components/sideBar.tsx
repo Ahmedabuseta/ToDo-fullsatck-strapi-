@@ -39,74 +39,72 @@ function SideBar() {
 
   return (
     <aside
-      className={`relative shadow-sm rounded-md shadow-slate-600 hscreen grid p-3 ${
+      className={` p-3  md:shadow-sm rounded-md md:shadow-slate-600    lg:p-3 ${
         openMenu
-          ? "w-24 p-1 text-xl overflow-hidden grid-cols-1"
-          : " grid-cols-1 "
+          ? "w-full  absolute inset-0 z-10 bg-white "
+          : " md:relative p-3 bg-transparent"
       }`}
     >
-      <div className="flex-col">
-        <div className="flex justify-between">
-          {openMenu ? (
-            <span
-              className="cursor-pointer pb-3 text-center mx-auto "
+      
+        <div className={`sm:flex lg:hidden justify-between`}>
+          
+            <div
+              className="cursor-pointer pb- w-full flex justify-between items-center text-cener mx-auto "
               onClick={handleOpenMenu}
             >
-              <Menu size={36} />
-            </span>
-          ) : (
-            <>
-              <h1 className="font-bold text-2xl">Menu</h1>
-              <span className="cursor-pointer " onClick={handleOpenMenu}>
-                <X />
-              </span>
-            </>
-          )}
+             {openMenu ?(<>
+              <Input
+              placeholder="search"
+              size="large"
+              className=" bg-white w-11/12 flex dark:bg-[#232323] dark:text-white  md:hidden dark:focus:border-white"
+              prefix={<SearchOutlined />}
+            />
+              <X size={40}/>
+             </>) : <Menu size={40} className="text-center mx-auto" />}
+            </div>
+
+          
         </div>
-        {openMenu ? (
-          ""
-        ) : (
+        <div className={`flex flex-col md:flex ${openMenu ? 'flex p-3' : 'hidden '}`}>
+       
           <div className="p-3">
             <Input
               placeholder="search"
               size="large"
-              className=" bg-white dark:bg-[#232323] dark:text-white dark:focus:border-white"
+              className={`hidden lg:flex bg-white dark:bg-[#232323] dark:text-white  md:hidden dark:focus:border-white`}
               prefix={<SearchOutlined />}
             />
           </div>
-        )}
 
-        <div>
+
+        <div className="bg-white">
           <ul className="list-none">
-            <h2 className="text-lg uppercase font-bold">tasks</h2>
+            <h2 className="text-lg uppercase md:ps-1 font-bold">tasks</h2>
             {/* {renderTasksColSidebar} */}
             <DrawSidebar list={tasksColSidebar} type='task' active={active} openMenu={openMenu} baseIdx={10} setActive={setActive} /> 
           </ul>
-          <Divider />
+          <Divider className="m-2"/>
           <ul className="list-none">
-            <h2 className="text-lg uppercase font-bold">Lists</h2>
+            <h2 className="text-lg uppercase md:ps-1 font-bold">Lists</h2>
             <DrawSidebar list={listsColSidebar} type="list" active={active} openMenu={openMenu} baseIdx={106} setActive={setActive} /> 
-
             <li
               className={`${
                 active === 10100 ? "bg-[#ebebeb] " : ""
-              }flex justify-between items-center p-4 group  hover:bg-[#ebebeb] cursor-pointer rounded-md  hover:font-bold`}
+              }flex justify-between items-center p-2 group  hover:bg-[#ebebeb] cursor-pointer rounded-md  hover:font-bold`}
               onClick={() => handleActive(10100)}
             >
-              <span className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center">
                 <div className="w-10 h-10">
                   <Plus size={38} absoluteStrokeWidth className="mx-auto"/>
                 </div>
-                {openMenu ? (
-                  ""
-                ) : (
-                  <span className="capitalize ">Add New List</span>
-                )}
-              </span>
+                
+                  <span className="capitalize md:hidden flex lg:flex ">Add New List</span>
+                
+              </div>
             </li>
           </ul>
-          <Divider className="bg-[#ebebeb]" />
-          <h2 className="text-lg uppercase font-bold ">tags</h2>
+          <Divider className="m-2" />
+          <h2 className="text-lg uppercase md:ps-1 font-bold ">tags</h2>
           <div
             className={`${
               openMenu
@@ -117,27 +115,17 @@ function SideBar() {
             {renderTagsRowSidebar}
             <AddTagBtn active={active} setActive={setActive} openMenu={openMenu} />
           </div>
-          <Divider />
+          <Divider className="m-2" />
           <div
-            className={`${
-              openMenu ? " mx-auto w-20  " : "w-full"
-            } h-full `}
-          >
-            <button className="flex p-1 w-full  items-center bg-yellow-500 rounded-md text-white  ">
-              {openMenu ? (
-                <LogOut
-                  size={48}
-                  className=" text-yellow-200 cursor-pointer hover:scale-110 transition duration-75 ease-in-out transform"
-                />
-              ) : (
-                <>
+            className={`h-full bg-white`}>
+            <button className="flex mx-auto p-1 w-full  items-center bg-yellow-500 rounded-md text-white  ">
+              
                   <LogOut
                     size={48}
                     className=" text-yellow-200 cursor-pointer hover:scale-110 transition duration-75 ease-in-out transform"
                   />
-                  <span className="font-bold text-xl ">Sign Out</span>
-                </>
-              )}
+                  <span className={`flex  ${openMenu ? 'md:flex w-full':'md:hidden'} font-bold w-full text-xl lg:flex`}>Log Out</span>
+                
             </button>
           </div>
         </div>
