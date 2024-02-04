@@ -15,7 +15,7 @@ const RootLayout = () => {
           <SideBar />
         </div>
         <div className="w-full mb-5 md:mb-1 flex-grow">
-          {/* <StickyWallPage /> */}<Outlet />
+          <Outlet />
         </div>
       </div>
 

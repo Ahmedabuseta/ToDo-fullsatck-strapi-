@@ -1,7 +1,24 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IList } from "../../interface/interfaces";
 
-const initialState : IList[] = []
+const initialState : IList[] = [
+  {
+    id:1,
+    color:"bg-red-500",
+    type:"personal",
+  },
+  {
+    id:3,
+    color:"bg-yellow-500",
+    type:"work",
+  },
+  {
+    id:5,
+    color:"bg-green-500",
+    type:"home",
+  },
+
+]
 const listSlice = createSlice({
   name:'lists',
   initialState,

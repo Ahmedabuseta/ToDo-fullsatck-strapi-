@@ -27,7 +27,7 @@ const StickWallForm = ({ setIsOpen }: iProps) => {
   const { register, handleSubmit, formState: { errors } } = methods;
   
   const onSubmit: SubmitHandler<IStickyWall> = (data) =>{ 
-    dispatch(addStickyWall({...data , id:Math.floor(Math.random() * (5000 - 20 + 1)) + 20}))
+    dispatch(addStickyWall({...data , id:Date.now() }))
     // console.log(data)
   }
   console.log(errors);

@@ -1,9 +1,8 @@
 import {  ReactNode } from "react";
 
 export interface ISubTasks {
-  id:number | unknown ;
+  id:number | unknown | string ;
   title:string;
-  description:string;
 }
 export interface IList {
   id:number | unknown ;
@@ -13,10 +12,10 @@ export interface IList {
 export interface ITodo {
   id: number | null ;
   title: string;
-  description:string;
-  list : IList;
+  description?:string;
+  list? : IList;
   subTasks?:ISubTasks[];
-  tags:string[];
+  tags?:{id:string;name:string;}[];
   dueDate:string;
   children?:string | number;
   isCompleted:boolean;

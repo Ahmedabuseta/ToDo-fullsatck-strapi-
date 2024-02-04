@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface Props {
-  msg:string | undefined |ReactNode
+  msg : string | undefined |ReactNode
   className? : string;
 
 }

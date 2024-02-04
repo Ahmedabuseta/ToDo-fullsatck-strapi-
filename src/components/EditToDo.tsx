@@ -1,8 +1,8 @@
 import { X } from "lucide-react";
 import SelectList from "./ui/ListBox";
 import AddTagBtn from "./ui/AddTagBtn";
-import CreateSubTask from "./create-edit todo/CreateSubTask";
-import CreateTask from "./create-edit todo/CraeteTask";
+import CreateSubTask from "./todos/CreateSubTask";
+import CreateTask from "./todos/CraeteTask";
 
 interface iProps {}
 

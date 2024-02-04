@@ -1,17 +1,17 @@
-import AddNewTodo from "../components/todo/addNewTodo";
-import Todos from "./todos";
+// import AddNewTodo from "../components/todos/addTodoBtn";
+// import Todos from "./todos";
 
-interface iProps {
+// interface iProps {
  
-}
+// }
 
-const Upcoming = ({}:iProps) => {
+// const Upcoming = ({}:iProps) => {
 
-return(
-<div>
-<AddNewTodo title='Task' />
-<Todos/>
-</div>
-)
-}
-export default Upcoming;
+// return(
+// <div>
+// <AddNewTodo title='Task' />
+// <Todos/>
+// </div>
+// )
+// }
+// export default Upcoming;
