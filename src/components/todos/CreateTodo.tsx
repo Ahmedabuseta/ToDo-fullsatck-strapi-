@@ -9,6 +9,7 @@ import TagInput from "./InputTags";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../app/features/todoslice";
 import ErrorMsg from "../errorMsg";
+import { useNavigate } from "react-router-dom";
 
 interface iProps {
   id?: number | unknown;
@@ -28,10 +29,11 @@ const CreateTodo = ({}: iProps) => {
       subTasks:[],
       tags:[],
       isCompleted:false
-      
+
     }}
   );
   const dispatch =useDispatch()
+  const navigate  =useNavigate()
   // const { formState: { errors } } = methods;
      const onSubmit: SubmitHandler<ITodo> = (data) => {console.log(data,methods.formState.errors)
   dispatch(addTodo({...data,id:Date.now(),isCompleted:false}))
@@ -45,7 +47,9 @@ const CreateTodo = ({}: iProps) => {
           <div className="flex-col min-h-[84vh] space-y-4">
             <div className="flex justify-between text-xl items-center">
               <h2 className="font-semibold ">task :</h2>
-              <X size={32} className="cursor-pointer" />
+              <X size={32}
+              onClick={()=> navigate('/today')}
+              className="cursor-pointer" />
             </div>
 
             <CreateTask />
@@ -72,10 +76,13 @@ const CreateTodo = ({}: iProps) => {
             <CreateSubTask />
           </div>
           <div className="flex items-center gap-3 my-4 bg-[#ebebeb]  ">
-            <button className="w-full  p-2 rounded-lg bg-white mt-2">
+            <button 
+            onClick={()=> navigate('/today')}
+            className="w-full  p-2 rounded-lg bg-white mt-2">
               Cancel
             </button>
             <button
+            
               className="w-full bg-yellow-400 p-2 rounded-lg mt-2"
               type="submit"
             >
