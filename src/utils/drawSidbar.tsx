@@ -8,6 +8,7 @@ interface Props {
   openMenu: boolean;
   active: number | null;
   type: string;
+  setIsOpen:(isOpen:boolean) => void;
   setActive: (idx: number) => void;
 }
 
@@ -15,6 +16,7 @@ function DrawSidebar({
   list,
   baseIdx,
   openMenu,
+  setIsOpen,
   active,
   setActive,
   type,
@@ -22,6 +24,12 @@ function DrawSidebar({
   const handleActive = (idx: number) => {
     setActive(idx);
   };
+
+  const handleCloseBar = ()=>{
+    if(innerWidth <= 768){
+      setIsOpen(false)
+    }
+  }
   console.log(list);
   const render = list.map(({ title, color, icon ,link}: ISidebar, idx: number) => ( 
 
@@ -75,7 +83,9 @@ function DrawSidebar({
       
   //   </li></Link> 
 
-  <Link to={link} className='no-underline'>
+  <Link to={link} 
+  onClick={handleCloseBar}
+  className='no-underline'>
   <li
     key={idx}
     onClick={() => handleActive(idx + baseIdx)}

@@ -27,18 +27,7 @@ const stickyWallSlice = createSlice({
   reducers: {
     addStickyWall: (state, action: PayloadAction<IStickyWall>) => {
 
-      return [...state , action.payload];
-      
-      
-    },
-    findStick : (state, action: PayloadAction<IStickyWall>)=>{
-      const foundItem = state.find((item) => item.id === action.payload);
-      if(foundItem){
-        return foundItem;
-      }else{
-        console.log("No Item Found");
-        return null;
-      }
+      return [...state , action.payload]
     },
     editStickyWall: (state, action: PayloadAction<IStickyWall>) => {
       const index = state.findIndex(
@@ -49,12 +38,12 @@ const stickyWallSlice = createSlice({
       }
     },
     removeStickyWall: (state, action: PayloadAction<number>) => {
-      state = state.filter(
+      return state.filter(
         (stickWall) => stickWall.id !== action.payload
       );
     },
 }});
 
-export const { addStickyWall,findStick ,editStickyWall, removeStickyWall } =
+export const { addStickyWall ,editStickyWall, removeStickyWall } =
   stickyWallSlice.actions;
 export default stickyWallSlice.reducer;

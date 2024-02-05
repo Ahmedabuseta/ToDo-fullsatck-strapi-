@@ -81,12 +81,12 @@ function SideBar() {
           <ul className="list-none">
             <h2 className="text-lg uppercase md:ps-1 font-bold">tasks</h2>
             {/* {renderTasksColSidebar} */}
-            <DrawSidebar list={tasksColSidebar} type='task' active={active} openMenu={openMenu} baseIdx={10} setActive={setActive} /> 
+            <DrawSidebar list={tasksColSidebar} setIsOpen={setOpenMenu} type='task' active={active} openMenu={openMenu} baseIdx={10} setActive={setActive} /> 
           </ul>
           <Divider className="m-2"/>
           <ul className="list-none">
             <h2 className="text-lg uppercase md:ps-1 font-bold">Lists</h2>
-            <DrawSidebar list={listsColSidebar} type="list" active={active} openMenu={openMenu} baseIdx={106} setActive={setActive} /> 
+            <DrawSidebar list={listsColSidebar} setIsOpen={setOpenMenu} type="list" active={active} openMenu={openMenu} baseIdx={106} setActive={setActive} /> 
             <li
               className={`${
                 active === 10100 ? "bg-[#ebebeb] " : ""

@@ -9,12 +9,12 @@ const RootLayout = () => {
   return (
     <div className="  ">
       {/* <Navbar /> */}
-      <div className=" space-x-4 flex flex-col md:flex-row">
+      <div className=" lg:space-x-4 flex flex-col md:flex-row">
         <div className="flex justify-between md:p-0 md:h-screen items-center md:items-stretch  ">
           <h1 className="font-bold italic flex text-xl ps-3 bg-white md:hidden">amd_6</h1>
           <SideBar />
         </div>
-        <div className="w-full mb-5 md:mb-1 flex-grow">
+        <div className="w-full  flex-grow">
           <Outlet />
         </div>
       </div>
