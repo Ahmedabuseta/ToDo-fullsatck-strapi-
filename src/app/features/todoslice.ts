@@ -29,7 +29,7 @@ const initialState: ITodo[] = [
     description:"description",
     isCompleted:false,
   }, {
-    id:1,
+    id:3,
     title:"Todo 1",
     list:{
       id:1,
@@ -51,7 +51,7 @@ const initialState: ITodo[] = [
     description:"description",
     isCompleted:false,
   }, {
-    id:1,
+    id:5,
     title:"Todo 1",
     list:{
       id:1,
@@ -77,7 +77,7 @@ export const todoSlice =createSlice({
      return state=[...state, action.payload];
     },
     removeTodo:(state,action:PayloadAction<number>) =>{
-    return state=state.filter(todo => todo.id !== action.payload)
+      state=state.filter(todo => todo.id !== action.payload)
     },
     editTodo:(state,action:PayloadAction<ITodo>) =>{
       const index = state.findIndex(todo => todo.id === action.payload.id);

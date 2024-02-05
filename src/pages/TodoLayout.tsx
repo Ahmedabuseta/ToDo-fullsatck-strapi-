@@ -9,7 +9,6 @@ interface iProps {}
 const TodoLayout = ({}: iProps) => {
   const todos = useSelector((state: RootState) => state.todos);
   const  { pathname } = useLocation()
-  console.log(pathname);
   
   return (
     <div className="flex justify-between  w-full flex-grow-1 p-4 items-start gap-4">

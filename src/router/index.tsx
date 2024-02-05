@@ -37,7 +37,12 @@ const router = createBrowserRouter(
               <CreateTodo />
             </ProtectedRoute>
           } />
+          <Route path='edit/:todoID' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <CreateTodo />
+            </ProtectedRoute>
+          } />
           </Route>
+          
           <Route path='stickyWall' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
               <StickyWallPage />
             </ProtectedRoute>
