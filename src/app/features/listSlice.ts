@@ -24,7 +24,10 @@ const listSlice = createSlice({
   initialState,
   reducers:{
     addList : (state , action:PayloadAction<IList>)=>{
+      const founded = state.find(list => list.type === action.payload.type)
+      if(!founded){
       return [...state,action.payload]
+      }
     },
     editList : (state,action:PayloadAction<IList>) =>{
       const index = state.findIndex(list=> list.id === action.payload.id)
@@ -33,7 +36,7 @@ const listSlice = createSlice({
     }
   },
   removeList:(state,action:PayloadAction<number>) =>{
-    state=state.filter(list => list.id !== action.payload)
+    return state.filter(list => list.id !== action.payload)
   },
 }
 })

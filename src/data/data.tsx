@@ -50,23 +50,7 @@ export const tasksColSidebar: ISidebar[] = [
     link:'stickywall'
   },
 ];
-export const listsColSidebar: ISidebar[] = [
-  {
-    title: "personal",
-    color: "bg-red-500",
-    link:''
-  },
-  {
-    title: "work",
-    color: "bg-yellow-500",
-    link:''
-  },
-  {
-    title: "list 1",
-    color: "bg-blue-500",
-    link:''
-  },
-];
+
 export const tagsRowSidebar: ISidebar[] = [
   {
     title: "tag 1",

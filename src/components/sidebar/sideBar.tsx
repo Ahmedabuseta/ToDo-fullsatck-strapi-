@@ -2,10 +2,13 @@ import { SearchOutlined } from "@ant-design/icons";
 import {  Divider, Input } from "antd";
 import { LogOut, Menu, Plus, X } from "lucide-react";
 import { useState } from "react";
-import { ISidebar } from "../interface/interfaces";
-import { listsColSidebar, tagsRowSidebar, tasksColSidebar } from "../data/data";
-import DrawSidebar from "../utils/drawSidbar";
-import AddTagBtn from "./ui/AddTagBtn";
+import { ISidebar } from "../../interface/interfaces";
+import { listsColSidebar, tagsRowSidebar, tasksColSidebar } from "../../data/data";
+import DrawSidebar from "../../utils/drawSidbar";
+import AddTagBtn from "../ui/AddTagBtn";
+import AddListForm from "../lists/AddListForm";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 //
 
@@ -18,28 +21,28 @@ function SideBar() {
   const handleActive = (idx: number) => {
     setActive(idx);
   };
-
-  const renderTagsRowSidebar = tagsRowSidebar.map(
-    ({ title, color }: ISidebar, idx: number) => (
-      <div
-        key={idx}
-        onClick={() => handleActive(idx + 100)}
-        className={`${color} ${
-          active === idx + 100 ? " scale-105 shadow-lg shadow-slate-400" : ""
-        }  text-white ${
-          openMenu ? "font-light text-sm p-1" : "font-bold p-2 ps-3 pe-3"
-        }  flex justify-center items-center rounded-md capitalize cursor-pointer `}
-      >
-        {title}
-      </div>
-    )
-  );
+  const listsColSidebar = useSelector((state:RootState) => state.lists)
+  // const renderTagsRowSidebar = tagsRowSidebar.map(
+  //   ({ type, color }: ISidebar, idx: number) => (
+  //     <div
+  //       key={idx}
+  //       onClick={() => handleActive(idx + 100)}
+  //       className={`${color} ${
+  //         active === idx + 100 ? " scale-105 shadow-lg shadow-slate-400" : ""
+  //       }  text-white ${
+  //         openMenu ? "font-light text-sm p-1" : "font-bold p-2 ps-3 pe-3"
+  //       }  flex justify-center items-center rounded-md capitalize cursor-pointer `}
+  //     >
+  //       {type}
+  //     </div>
+  //   )
+  // );
 
   console.log(openMenu);
 
   return (
     <aside
-      className={` p-3  md:shadow-sm rounded-md md:shadow-slate-600    lg:p-3 ${
+      className={` p-3 lg:fixed  inset-y-0 md:shadow-sm rounded-md md:shadow-slate-600    lg:p-3 ${
         openMenu
           ? "w-full  absolute inset-0 z-10 bg-white "
           : " md:relative p-3 bg-transparent"
@@ -66,7 +69,7 @@ function SideBar() {
           
         </div>
         <div className={`flex flex-col md:flex ${openMenu ? 'flex p-3' : 'hidden '}`}>
-       
+              {/* <p className="text-2xl italic font-bold text-center   text-sky-700">amd_6</p> */}
           <div className="p-3">
             <Input
               placeholder="search"
@@ -81,40 +84,23 @@ function SideBar() {
           <ul className="list-none">
             <h2 className="text-lg uppercase md:ps-1 font-bold">tasks</h2>
             {/* {renderTasksColSidebar} */}
-            <DrawSidebar list={tasksColSidebar} setIsOpen={setOpenMenu} type='task' active={active} openMenu={openMenu} baseIdx={10} setActive={setActive} /> 
+            <DrawSidebar list={tasksColSidebar} setIsOpen={setOpenMenu} typee='task' active={active} openMenu={openMenu} baseIdx={10} setActive={setActive} /> 
           </ul>
           <Divider className="m-2"/>
-          <ul className="list-none">
-            <h2 className="text-lg uppercase md:ps-1 font-bold">Lists</h2>
-            <DrawSidebar list={listsColSidebar} setIsOpen={setOpenMenu} type="list" active={active} openMenu={openMenu} baseIdx={106} setActive={setActive} /> 
+          <ul className="list-none ">
+            <h2 className="text-lg uppercase md:ps-1 space-x-2  font-bold">Lists</h2>
+            <div className=" max-h-[45vh] overflow-y-auto">
+            <DrawSidebar list={listsColSidebar} setIsOpen={setOpenMenu} typee="list" active={active} openMenu={openMenu} baseIdx={106} setActive={setActive} /> 
+            </div>
             <li
               className={`${
                 active === 10100 ? "bg-[#ebebeb] " : ""
-              }flex justify-between items-center p-2 group  hover:bg-[#ebebeb] cursor-pointer rounded-md  hover:font-bold`}
+              }flex justify-start items-center p-2 group  hover:bg-[#ebebeb] cursor-pointer rounded-md  hover:font-bold`}
               onClick={() => handleActive(10100)}
             >
-              <div className="flex gap-1 items-center">
-                <div className="w-10 h-10">
-                  <Plus size={38} absoluteStrokeWidth className="mx-auto"/>
-                </div>
-                
-                  <span className="capitalize md:hidden flex lg:flex ">Add New List</span>
-                
-              </div>
+             <AddListForm />
             </li>
           </ul>
-          <Divider className="m-2" />
-          <h2 className="text-lg uppercase md:ps-1 font-bold ">tags</h2>
-          <div
-            className={`${
-              openMenu
-                ? "flex-col p-0 items-center justify-center gap-2 space-y-2 font-light"
-                : "flex justify-start"
-            }  items-center flex-wrap gap-2 p-3`}
-          >
-            {renderTagsRowSidebar}
-            <AddTagBtn active={active} setActive={setActive} openMenu={openMenu} />
-          </div>
           <Divider className="m-2" />
           <div
             className={`h-full bg-white`}>

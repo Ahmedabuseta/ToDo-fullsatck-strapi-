@@ -1,35 +1,57 @@
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import ErrorMsg from "../errorMsg";
 import AddPoints from "./AddPoints";
-import useGenerateRandomColor from "../ui/hooks/generateColor";
-import { useDispatch } from "react-redux";
-import { addStickyWall } from "../../app/features/stickywall";
+// import useGenerateRandomColor from "../ui/hooks/generateColor";
+import { useDispatch, useSelector } from "react-redux";
+import { addStickyWall, editStickyWall } from "../../app/features/stickywall";
 import { IStickyWall } from "../../interface/interfaces";
+import { RootState } from "../../app/store";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 interface iProps {
   // preloadedData?: { title: string; color: string; points: string[] };
   setIsOpen: (isOpen: boolean) => void;
 }
 const StickWallForm = ({ setIsOpen }: iProps) => {
+
   function closeModal() {
     setIsOpen(false);
+    navigate("/stickyWall")
   }
+  const { stickID } = useParams();
+  console.log(stickID );
+  
+  const defaultValues =  {
+    title: "honda",
+    color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+    points: ["first point"],
+  };
+  const sticks = useSelector((state: RootState) => state.stickWalls);
 
-  const color = useGenerateRandomColor();
-  console.log(color);
+
+  const navigate = useNavigate();
+
   const dispatch = useDispatch()
   const methods = useForm<IStickyWall>({
-    defaultValues: {
-      title: "honda",
-      color: color,
-      points: ["first point"],
-    },
+    defaultValues:defaultValues,
   });
   const { register, handleSubmit, formState: { errors } } = methods;
-  
+  useEffect(() => {
+    if (stickID) {
+      const stick = sticks.find((stick) => stick.id === Number(stickID));
+      methods.reset(stick);
+    } else {
+      methods.reset({ ...defaultValues });
+    }
+    return () => {};
+  }, [stickID]);
   const onSubmit: SubmitHandler<IStickyWall> = (data) =>{ 
-    dispatch(addStickyWall({...data , id:Date.now() }))
-    // console.log(data)
-  }
+    if(stickID){
+      dispatch(editStickyWall({ ...data}));
+    }else{
+      dispatch(addStickyWall({ ...data, id: Date.now() }));
+    }
+    navigate("/stickyWall");  }
   console.log(errors);
 
   return (

@@ -25,7 +25,7 @@ const initialState: ITodo[] = [
       {id:'2',name:"tag 1"},
       {id:'6',name:"tag 2"},
     ],
-    dueDate:"10/10/2022",
+    dueDate: "2024-02-20",
     description:"description",
     isCompleted:false,
   }, {

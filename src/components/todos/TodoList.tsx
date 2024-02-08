@@ -15,11 +15,14 @@ const TodoList = ({}:iProps) => {
 return(
 <div className="flex-col w-full">
     <AddTodoBtn title="Todo" />
-      {todos.map((todo:ITodo)=>(
+    <div className="h-[84vh] overflow-auto">
+       {todos.map((todo:ITodo)=>(
         <SingleTodo
         todo={todo}
       />
       ))}
+    </div>
+     
       </div>
 )
 }

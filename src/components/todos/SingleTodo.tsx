@@ -28,7 +28,7 @@ function SingleTodo({ todo }: IProps) {
     );
   };
   return (
-    <div className="flex-col space-y-2  text-[#3b3b3b]" key={id}>
+    <div className={`flex-col space-y-2 w-full text-[#3b3b3b] ${isChecked ? 'line-through bg-slate-400' : '' } `} key={id}>
       <div className="flex justify-between items-center p-2 pb-1">
         <div >
           <div className="flex space-x-2 justify-start items-center">

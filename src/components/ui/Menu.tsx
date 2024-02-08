@@ -3,12 +3,12 @@ import { Fragment} from 'react'
 import { MoreHorizontal } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { removeStickyWall } from '../../app/features/stickywall'
+import { Link } from 'react-router-dom'
 interface IProp{
-  id:number;
+  id:any;
 }
 export default function Dropdown({id}:IProp) {
   const dispatch =useDispatch()
-
   return (
     <div className="absolute top-1 right-1 text-right">
       <Menu as="div" className="relative inline-block text-left">
@@ -30,10 +30,11 @@ export default function Dropdown({id}:IProp) {
             
               <Menu.Item>
                 {({ active }) => (
-                  <button
+                  <Link
+                  to={`/stickyWall/edit/${id}`}
                     className={`${
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-fll items-center rounded-md px-2 py-2 text-sm`}
+                    } group w-full flex w-fll items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
                       <EditActiveIcon
@@ -47,7 +48,7 @@ export default function Dropdown({id}:IProp) {
                       />
                     )}
                     Edit
-                  </button>
+                  </Link>
                 )}
               </Menu.Item>
 
@@ -120,7 +121,7 @@ function EditActiveIcon(props) {
 }
 
 
-function DeleteInactiveIcon(props) {
+function DeleteInactiveIcon(props:any) {
   return (
     <svg
       {...props}
@@ -143,7 +144,7 @@ function DeleteInactiveIcon(props) {
   )
 }
 
-function DeleteActiveIcon(props) {
+function DeleteActiveIcon(props:any) {
   return (
     <svg
       {...props}

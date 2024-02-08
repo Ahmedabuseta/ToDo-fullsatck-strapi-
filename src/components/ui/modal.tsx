@@ -1,17 +1,20 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ReactNode } from "react";
 import {  Fragment } from "react";
-
+import { useNavigate   } from "react-router-dom";
 interface IProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   children : ReactNode
+  title?:string;
 }
 
 
-export default function Modal({ isOpen, setIsOpen  ,children}: IProps) {
+export default function Modal({ isOpen, setIsOpen ,title ,children}: IProps) {
+  const navigate = useNavigate()
   function closeModal() {
     setIsOpen(false);
+    navigate('/stickyWall')
   }
 
   return (
@@ -46,7 +49,7 @@ export default function Modal({ isOpen, setIsOpen  ,children}: IProps) {
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900"
                   >
-                    Add sticky wall
+                    {title ? title :'Add sticky wall'}
                   </Dialog.Title>
                   <div className="mt-2 text-gray-500">
                     

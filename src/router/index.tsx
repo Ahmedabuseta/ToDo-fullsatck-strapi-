@@ -7,10 +7,9 @@ import HomePage from "../pages";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 import StickyWallPage from "../pages/stickyWall";
-// import Upcoming from "../pages/upcoming";
-import ListPage from "../pages/ListPage";
 import CreateTodo from "../components/todos/CreateTodo";
 import TodoLayout from "../pages/TodoLayout";
+import CreateStickWall from "../components/stickyWall/CreateStickWall";
 const isLoggedIn = false;
 const userData: { email: string } | null = isLoggedIn ? { email: "email@gmail.com" } : null;
 
@@ -46,7 +45,16 @@ const router = createBrowserRouter(
           <Route path='stickyWall' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
               <StickyWallPage />
             </ProtectedRoute>
+          } >
+            <Route path='create' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <CreateStickWall />
+            </ProtectedRoute>
           } />
+            <Route path='edit/:stickID' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
+              <CreateStickWall />
+            </ProtectedRoute>
+          } />
+          </Route>
           {/* <Route path='upcoming' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
               <Upcoming />
             </ProtectedRoute>
@@ -55,14 +63,7 @@ const router = createBrowserRouter(
               {<h2>dfldfgj</h2>}
             </ProtectedRoute>
           } />
-          <Route path='lists/:id' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
-              <ListPage />
-            </ProtectedRoute>
-          } />
-          <Route path='tag/:id' element={<ProtectedRoute isAllowed={!isLoggedIn} redirectPath="/" data={userData}>
-              <ListPage />
-            </ProtectedRoute>
-          } />
+          
         <Route
           path="login"
           element={
